@@ -1,4 +1,5 @@
 using api.Models;
+using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 
 class AppDbContext : DbContext
@@ -273,14 +274,14 @@ class AppDbContext : DbContext
         );
 
         modelBuilder.Entity<Teacher>().HasData(
-            new { Id = 1, FirstName = "Ελένη", LastName = "Ρόμπολα" },
-            new { Id = 2, FirstName = "Ευθύμιος", LastName = "Αλέπης" },
-            new { Id = 3, FirstName = "Ευστράτιος", LastName = "Δερμανούτσος" },
-            new { Id = 4, FirstName = "Δημήτρης", LastName = "Φώτης" },
-            new { Id = 5, FirstName = "Γεώργιος", LastName = "Μιχαλόπουλος" },
-            new { Id = 6, FirstName = "Αθανάσιος", LastName = "Κατσαρός" },
-            new { Id = 7, FirstName = "Κωνσταντίνος", LastName = "Κουτρούμπας" },
-            new { Id = 8, FirstName = "Σοφία", LastName = "Πετρίδου" }
+            new { Id = 1, FirstName = "Ελένη", LastName = "Ρόμπολα", Pin = BCrypt.Net.BCrypt.HashPassword("1234") },
+            new { Id = 2, FirstName = "Ευθύμιος", LastName = "Αλέπης", Pin = BCrypt.Net.BCrypt.HashPassword("2345") },
+            new { Id = 3, FirstName = "Ευστράτιος", LastName = "Δερμανούτσος", Pin = BCrypt.Net.BCrypt.HashPassword("3456") },
+            new { Id = 4, FirstName = "Δημήτρης", LastName = "Φώτης", Pin = BCrypt.Net.BCrypt.HashPassword("4567") },
+            new { Id = 5, FirstName = "Γεώργιος", LastName = "Μιχαλόπουλος", Pin = BCrypt.Net.BCrypt.HashPassword("5678") },
+            new { Id = 6, FirstName = "Αθανάσιος", LastName = "Κατσαρός", Pin = BCrypt.Net.BCrypt.HashPassword("6789") },
+            new { Id = 7, FirstName = "Κωνσταντίνος", LastName = "Κουτρούμπας", Pin = BCrypt.Net.BCrypt.HashPassword("7890") },
+            new { Id = 8, FirstName = "Σοφία", LastName = "Πετρίδου", Pin = BCrypt.Net.BCrypt.HashPassword("8901") }
         );
     }
 

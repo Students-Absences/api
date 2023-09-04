@@ -12,13 +12,7 @@ class StudentClassroom
     [Column("STUDENTID")]
     public int StudentId { get; set; }
 
-    [ForeignKey("StudentId")]
-    public Student? Student { get; set; }
-
     [Required]
     [Column("CLASSROOMID")]
     public int ClassroomId { get; set; }
-
-    [ForeignKey("ClassroomId")]
-    public Classroom? Classroom { get; set; }
 }

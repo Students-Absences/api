@@ -30,13 +30,7 @@ class Absence
     [Column("ASSIGNMENTID")]
     public int AssignmentId { get; set; }
 
-    [ForeignKey("AssignmentId")]
-    public Assignment? Assignment { get; set; }
-
     [Required]
     [Column("STUDENTID")]
     public int StudentId { get; set;}
-
-    [ForeignKey("StudentId")]
-    public Student? Student { get; set; }
 }
