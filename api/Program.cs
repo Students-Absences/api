@@ -57,4 +57,11 @@ app.MapGet("/teachers", async (AppDbContext db) =>
     .WithName("GetTeachers")
     .WithOpenApi();
 
+app.MapPost("/sync", (AppDbContext db, Absence[] absences) => {
+    // TODO: Implement
+    return absences[0].Year;
+})
+    .WithName("Sync")
+    .WithOpenApi();
+
 app.Run();
