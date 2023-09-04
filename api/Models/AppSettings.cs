@@ -5,12 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace api.Models;
 
 [Table("APPSETTINGS")]
+[PrimaryKey("SchoolName", "SchoolLogoUrl")]
 class AppSettings
 {
-    [Key]
-    [Column("ID")]
-    public int Id { get; set; }
-
     [Column("SCHOOLNAME")]
     [Required]
     public string SchoolName { get; set; } = string.Empty;
