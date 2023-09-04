@@ -16,10 +16,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/sync", () =>
+app.MapGet("/weatherforecast", () =>
 {
     return 1;
 })
-.WithName("Sync");
+.WithName("GetWeatherForecast")
+.WithOpenApi();
 
 app.Run();
