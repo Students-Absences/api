@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace api.Models;
 
@@ -11,20 +12,24 @@ class Absence
     public int Id { get; set; }
 
     [Required]
+    [JsonIgnore]
     [Column("HOUR")]
-    public int Hour { get; set; }
+    public int Hour => this.DateIn.Hour; // TODO: Get the school hour from this
 
     [Required]
+    [JsonIgnore]
     [Column("DAY")]
-    public int Day { get; set; }
+    public int Day => this.DateIn.Day;
 
     [Required]
+    [JsonIgnore]
     [Column("MONTH")]
-    public int Month { get; set; }
+    public int Month => this.DateIn.Month;
 
     [Required]
+    [JsonIgnore]
     [Column("YEAR")]
-    public int Year { get; set;}
+    public int Year => this.DateIn.Year;
 
     [Required]
     [Column("ASSIGNMENTID")]
@@ -33,4 +38,7 @@ class Absence
     [Required]
     [Column("STUDENTID")]
     public int StudentId { get; set;}
+
+    [NotMapped]
+    public DateTime DateIn { get; set; }
 }
