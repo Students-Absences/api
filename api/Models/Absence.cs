@@ -8,7 +8,6 @@ namespace api.Models;
 class Absence
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [JsonIgnore]
     [Column("ID")]
     public int Id { get; set; }
