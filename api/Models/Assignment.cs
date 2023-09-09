@@ -16,9 +16,9 @@ class Assignment
 
     [Required]
     [Column("SUBJECTID")]
-    public int SubjectId { get; set; }
+    public required int SubjectId { get; set; }
 
     [Required]
     [Column("TEACHERID")]
-    public int TeacherId { get; set; }
+    public required int TeacherId { get; set; }
 }

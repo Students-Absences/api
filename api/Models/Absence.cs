@@ -9,7 +9,7 @@ class Absence
 {
     [Key]
     [Column("ID")]
-    public int Id { get; set; }
+    public required int Id { get; set; }
 
     [Required]
     [JsonIgnore]
@@ -33,12 +33,12 @@ class Absence
 
     [Required]
     [Column("ASSIGNMENTID")]
-    public int AssignmentId { get; set; }
+    public required int AssignmentId { get; set; }
 
     [Required]
     [Column("STUDENTID")]
-    public int StudentId { get; set;}
+    public required int StudentId { get; set;}
 
     [NotMapped]
-    public DateTime DateIn { get; set; }
+    public required DateTime DateIn { get; set; }
 }

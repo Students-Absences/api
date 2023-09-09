@@ -36,6 +36,10 @@ app.MapGet("/assignments", (AppDbContext db) => Services.GetAssignments(db))
     .WithName("GetAssignments")
     .WithOpenApi();
 
+app.MapGet("/classrooms", (AppDbContext db) => Services.GetClassrooms(db))
+    .WithName("GetClassrooms")
+    .WithOpenApi();
+
 app.MapGet("/students", (AppDbContext db) => Services.GetStudents(db))
     .WithName("GetStudents")
     .WithOpenApi();

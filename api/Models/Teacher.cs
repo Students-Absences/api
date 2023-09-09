@@ -7,5 +7,5 @@ namespace api.Models;
 class Teacher : Person
 {
     [Required]
-    public string Pin { get; set; } = string.Empty;
+    public required string Pin { get; set; }
 }

@@ -13,11 +13,17 @@ static class Services
     public static List<Assignment> GetAssignments(AppDbContext context)
         => context.Assignments.ToList();
 
+    public static List<ListItem> GetClassrooms(AppDbContext context)
+        => context.Classrooms.Select(t => (ListItem)t).ToList();
+
     public static List<Student> GetStudents(AppDbContext context)
         => context.Students.ToList();
 
     public static List<StudentClassroom> GetStudentClassrooms(AppDbContext context)
         => context.StudentClassrooms.ToList();
+
+    public static List<ListItem> GetSubjects(AppDbContext context)
+        => context.Subjects.Select(t => (ListItem)t).ToList();
 
     public static List<ListItem> GetTeachers(AppDbContext context)
         => context.Teachers.Select(t => new ListItem {

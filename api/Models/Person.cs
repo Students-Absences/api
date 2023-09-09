@@ -11,9 +11,9 @@ class Person
 
     [Column("FIRSTNAME")]
     [Required]
-    public string FirstName { get; set; } = string.Empty;
+    public required string FirstName { get; set; }
 
     [Column("LASTNAME")]
     [Required]
-    public string LastName { get; set; } = string.Empty;
+    public required string LastName { get; set; }
 }

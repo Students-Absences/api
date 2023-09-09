@@ -10,9 +10,9 @@ class AppSettings
 {
     [Column("SCHOOLNAME")]
     [Required]
-    public string SchoolName { get; set; } = string.Empty;
+    public required string SchoolName { get; set; }
 
     [Column("SCHOOLLOGOURL")]
     [Required]
-    public string SchoolLogoUrl { get; set; } = string.Empty;
+    public required string SchoolLogoUrl { get; set; }
 }

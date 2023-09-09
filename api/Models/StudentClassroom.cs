@@ -10,9 +10,9 @@ class StudentClassroom
 {
     [Required]
     [Column("STUDENTID")]
-    public int StudentId { get; set; }
+    public required int StudentId { get; set; }
 
     [Required]
     [Column("CLASSROOMID")]
-    public int ClassroomId { get; set; }
+    public required int ClassroomId { get; set; }
 }

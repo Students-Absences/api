@@ -7,13 +7,13 @@ class ListItem
 {
     [Key]
     [Column("ID")]
-    public int Id { get; set; }
+    public required int Id { get; set; }
 
     [Column("LABEL")]
     [Required]
-    public string Label { get; set; } = string.Empty;
+    public required string Label { get; set; }
 
     [Column("LABELEN")]
     [Required]
-    public string LabelEn { get; set; } = string.Empty;
+    public required string LabelEn { get; set; }
 }
