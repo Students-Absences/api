@@ -8,28 +8,67 @@ namespace api.Models;
 class Absence
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [JsonIgnore]
     [Column("ID")]
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [JsonIgnore]
     [Column("HOUR")]
-    public int Hour => this.DateIn.Hour; // TODO: Get the school hour from this
+    [Range(1, 31, MinimumIsExclusive = false, MaximumIsExclusive = false)]
+    public int Hour {
+        //? src = http://2lyk-pallin.att.sch.gr/?page_id=80
+        get {
+            if (this.DateIn.Hour == 8 || this.DateIn.Hour == 9 && this.DateIn.Minute <= 5)
+                return 1;
+
+            if (this.DateIn.Hour == 9 && this.DateIn.Minute > 5 || this.DateIn.Hour == 10 && this.DateIn.Minute == 0)
+                return 2;
+
+            if (this.DateIn.Hour == 10 && this.DateIn.Minute <= 55)
+                return 3;
+
+            if (this.DateIn.Hour == 10 && this.DateIn.Minute > 56 || this.DateIn.Hour == 11 && this.DateIn.Minute <= 50)
+                return 4;
+
+            if (this.DateIn.Hour == 11 && this.DateIn.Minute > 50 || this.DateIn.Hour == 12 && this.DateIn.Minute <= 40)
+                return 5;
+
+            if (this.DateIn.Hour == 12 && this.DateIn.Minute > 40 || this.DateIn.Hour == 13 && this.DateIn.Minute <= 30)
+                return 6;
+
+            return 7;
+        }
+        set {}
+    }
 
     [Required]
     [JsonIgnore]
     [Column("DAY")]
-    public int Day => this.DateIn.Day;
+    [Range(1, 31, MinimumIsExclusive = false, MaximumIsExclusive = false)]
+    public int Day {
+        get { return this.DateIn.Day; }
+        set { }
+    }
 
     [Required]
     [JsonIgnore]
     [Column("MONTH")]
-    public int Month => this.DateIn.Month;
+    [Range(1, 12, MinimumIsExclusive = false, MaximumIsExclusive = false)]
+    public int Month {
+        get { return this.DateIn.Month; }
+        set { }
+    }
 
     [Required]
     [JsonIgnore]
     [Column("YEAR")]
-    public int Year => this.DateIn.Year;
+    [Range(1970, 2024, MinimumIsExclusive = false, MaximumIsExclusive = false)]
+    public int Year {
+        get { return this.DateIn.Year; }
+        set { }
+    }
 
     [Required]
     [Column("ASSIGNMENTID")]

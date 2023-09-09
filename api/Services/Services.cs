@@ -31,4 +31,20 @@ static class Services
             Label = $"{t.FirstName} {t.LastName}",
             LabelEn = $"{t.FirstName} {t.LastName}"
         }).ToList();
+
+    public static Sync Sync(AppDbContext context, Absence[] absences)
+    {
+        context.Absences.AddRange(absences);
+        context.SaveChanges();
+
+        return new() {
+            AppSettings = GetAppSettings(context),
+            Assignments = GetAssignments(context),
+            Classrooms = GetClassrooms(context),
+            Students = GetStudents(context),
+            StudentClassrooms = GetStudentClassrooms(context),
+            Subjects = GetSubjects(context),
+            Teachers = GetTeachers(context)
+        };
+    }
 }
