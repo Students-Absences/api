@@ -1,4 +1,5 @@
 using api.Models;
+using api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,42 +24,31 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/absences", async (AppDbContext db) =>
-    await db.Absences.ToListAsync())
+app.MapGet("/absences", (AppDbContext db) => Services.GetAbsences(db))
     .WithName("GetAbsences")
     .WithOpenApi();
 
-app.MapGet("/settings", async (AppDbContext db) =>
-    await db.AppSettings.FirstOrDefaultAsync())
+app.MapGet("/settings", (AppDbContext db) => Services.GetAppSettings(db))
     .WithName("GetAppSettings")
     .WithOpenApi();
 
-app.MapGet("/assignments", async (AppDbContext db) =>
-    await db.Assignments.ToListAsync())
+app.MapGet("/assignments", (AppDbContext db) => Services.GetAssignments(db))
     .WithName("GetAssignments")
     .WithOpenApi();
 
-app.MapGet("/students", async (AppDbContext db) =>
-    await db.Students.ToListAsync())
+app.MapGet("/students", (AppDbContext db) => Services.GetStudents(db))
     .WithName("GetStudents")
     .WithOpenApi();
 
-app.MapGet("/studentClassrooms", async (AppDbContext db) =>
-    await db.StudentClassrooms.ToListAsync())
+app.MapGet("/studentClassrooms", (AppDbContext db) => Services.GetStudentClassrooms(db))
     .WithName("GetStudentClassrooms")
     .WithOpenApi();
 
-app.MapGet("/teachers", async (AppDbContext db) =>
-    await db.Teachers.Select(t => new ListItem {
-            Id = t.Id,
-            Label = $"{t.FirstName} {t.LastName}",
-            LabelEn = $"{t.FirstName} {t.LastName}"
-        }).ToListAsync())
+app.MapGet("/teachers", (AppDbContext db) => Services.GetTeachers(db))
     .WithName("GetTeachers")
     .WithOpenApi();
 
 app.MapPost("/sync", (AppDbContext db, Absence[] absences) => {
-    // TODO: Implement
     return absences[0].Year;
 })
     .WithName("Sync")
