@@ -52,7 +52,13 @@ app.MapGet("/teachers", (AppDbContext db) => Services.GetTeachers(db))
     .WithName("GetTeachers")
     .WithOpenApi();
 
-app.MapPost("/sync", (AppDbContext db, SyncIn syncIn) => Services.Sync(db, syncIn))
+app.MapPost("/sync", IResult (AppDbContext db, SyncIn syncIn) => {
+        try {
+            return Results.Ok(Services.Sync(db, syncIn));
+        } catch (Exception e) {
+            return Results.Text(e.Message, statusCode: 401);
+        }
+    })
     .WithName("Sync")
     .WithOpenApi();
 

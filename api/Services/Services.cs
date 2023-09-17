@@ -34,6 +34,14 @@ static class Services
 
     public static SyncOut Sync(AppDbContext context, SyncIn syncIn)
     {
+        // Get teacher from ID
+        Teacher? teacher = context.Teachers.Find(syncIn.TeacherId) ??
+            throw new Exception("Teacher does not exist.");
+
+        if (!BCrypt.Net.BCrypt.Verify(syncIn.TeacherPin, teacher.Pin))
+            throw new Exception("Wrong pin was provided.");
+
+        // Add absences to DB
         context.Absences.AddRange(syncIn.Absences);
         context.SaveChanges();
 
