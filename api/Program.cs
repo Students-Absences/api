@@ -52,7 +52,7 @@ app.MapGet("/teachers", (AppDbContext db) => Services.GetTeachers(db))
     .WithName("GetTeachers")
     .WithOpenApi();
 
-app.MapPost("/sync", (AppDbContext db, Absence[] absences) => Services.Sync(db, absences))
+app.MapPost("/sync", (AppDbContext db, SyncIn syncIn) => Services.Sync(db, syncIn))
     .WithName("Sync")
     .WithOpenApi();
 

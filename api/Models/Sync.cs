@@ -1,6 +1,6 @@
-using api.Models;
+namespace api.Models;
 
-class Sync
+class SyncOut
 {
     public required AppSettings AppSettings { get; set; }
     public required List<Assignment> Assignments { get; set; }

@@ -32,9 +32,9 @@ static class Services
             LabelEn = $"{t.FirstName} {t.LastName}"
         }).ToList();
 
-    public static Sync Sync(AppDbContext context, Absence[] absences)
+    public static SyncOut Sync(AppDbContext context, SyncIn syncIn)
     {
-        context.Absences.AddRange(absences);
+        context.Absences.AddRange(syncIn.Absences);
         context.SaveChanges();
 
         return new() {
