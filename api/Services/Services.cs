@@ -26,11 +26,13 @@ static class Services
         => context.Subjects.Select(t => (ListItem)t).ToList();
 
     public static List<ListItem> GetTeachers(AppDbContext context)
-        => context.Teachers.Select(t => new ListItem {
-            Id = t.Id,
-            Label = $"{t.FirstName} {t.LastName}",
-            LabelEn = $"{t.FirstName} {t.LastName}"
-        }).ToList();
+        => context.Teachers
+            .Where(t => t.Id != 1000000) //! Exclude supervisor
+            .Select(t => new ListItem {
+                Id = t.Id,
+                Label = $"{t.FirstName} {t.LastName}",
+                LabelEn = $"{t.FirstName} {t.LastName}"
+            }).ToList();
 
     public static SyncOut Sync(AppDbContext context, SyncIn syncIn)
     {

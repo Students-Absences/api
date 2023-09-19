@@ -281,7 +281,8 @@ class AppDbContext : DbContext
             new { Id = 5, FirstName = "Γεώργιος", LastName = "Μιχαλόπουλος", Pin = BCrypt.Net.BCrypt.HashPassword("5678") },
             new { Id = 6, FirstName = "Αθανάσιος", LastName = "Κατσαρός", Pin = BCrypt.Net.BCrypt.HashPassword("6789") },
             new { Id = 7, FirstName = "Κωνσταντίνος", LastName = "Κουτρούμπας", Pin = BCrypt.Net.BCrypt.HashPassword("7890") },
-            new { Id = 8, FirstName = "Σοφία", LastName = "Πετρίδου", Pin = BCrypt.Net.BCrypt.HashPassword("8901") }
+            new { Id = 8, FirstName = "Σοφία", LastName = "Πετρίδου", Pin = BCrypt.Net.BCrypt.HashPassword("8901") },
+            new { Id = 1000000, FirstName = "Supervisor", LastName = "-", Pin = BCrypt.Net.BCrypt.HashPassword("1928") }
         );
     }
 
