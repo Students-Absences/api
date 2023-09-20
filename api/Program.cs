@@ -28,6 +28,10 @@ app.MapGet("/absences", (AppDbContext db) => Services.GetAbsences(db))
     .WithName("GetAbsences")
     .WithOpenApi();
 
+app.MapDelete("/clear", (AppDbContext db) => Services.ClearAbsences(db))
+    .WithName("ClearAbsences")
+    .WithOpenApi();
+
 app.MapGet("/settings", (AppDbContext db) => Services.GetAppSettings(db))
     .WithName("GetAppSettings")
     .WithOpenApi();

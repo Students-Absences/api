@@ -34,6 +34,14 @@ static class Services
                 LabelEn = $"{t.FirstName} {t.LastName}"
             }).ToList();
 
+    public static List<Absence> ClearAbsences(AppDbContext context)
+    {
+        context.Absences.RemoveRange(context.Absences);
+        context.SaveChanges();
+
+        return context.Absences.ToList();
+    }
+
     public static SyncOut Sync(AppDbContext context, SyncIn syncIn)
     {
         // Get teacher from ID
