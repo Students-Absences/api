@@ -9,8 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(
-    builder.Configuration.GetConnectionString("Default")
+builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(
+    builder.Configuration.GetConnectionString("Default"),
+    opts =>
+    {
+        opts.CommandTimeout(300);
+        opts.EnableRetryOnFailure(
+            maxRetryCount: 10,
+            maxRetryDelay: TimeSpan.FromSeconds(3),
+            errorCodesToAdd: null
+        );
+    }
 ));
 
 var app = builder.Build();
